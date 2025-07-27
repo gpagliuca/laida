@@ -11,22 +11,22 @@ st.session_state.counter += 1
 
 
 def get_system():
-    r = requests.get("http://localhost:61208/api/4/system/")
+    r = requests.get("http://192.168.178.47:61208/api/4/system/")
     return r.json()
 
 
 def get_gpu():
-    r = requests.get("http://localhost:61208/api/4/gpu/")
+    r = requests.get("http://192.168.178.47:61208/api/4/gpu/")
     return r.json()
 
 
 def get_cpu():
-    r = requests.get("http://localhost:61208/api/4/cpu")
+    r = requests.get("http://192.168.178.47:61208/api/4/cpu")
     return r.json()
 
 
 def get_mem():
-    r = requests.get("http://localhost:61208/api/4/mem")
+    r = requests.get("http://192.168.178.47:61208/api/4/mem")
     return r.json()
 
 

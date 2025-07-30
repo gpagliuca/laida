@@ -1,6 +1,7 @@
 __author__ = "Giuseppe Pagliuca"
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
+import sys
 import time
 
 import matplotlib.pyplot as plt
@@ -11,7 +12,7 @@ import yaml
 plt.style.use("fivethirtyeight")
 
 
-## Functions
+# Functions
 # ------------------------------------------------------------------------------
 def get_system():
     r = requests.get("http://{}:61208/api/4/system/".format(server))
@@ -43,18 +44,21 @@ def get_ip():
     return r.json()
 
 
-## Settings
+# Settings
 # ------------------------------------------------------------------------------
-with open("../data/settings.yaml", "r") as fobj:
+with open("./settings.yaml", "r") as fobj:
     settings = yaml.safe_load(fobj)
-    server = settings["ip"]
+    if sys.argv[1] == "remote":
+        server = settings["ip"]
+    else:
+        server = "localhost"
 
 if "counter" not in st.session_state:
     st.session_state.counter = 0
 
 st.session_state.counter += 1
 
-## Main
+# Main
 # ------------------------------------------------------------------------------
 system = get_system()
 cpu = get_cpu()
@@ -63,11 +67,11 @@ mem = get_mem()
 ip = get_ip()
 sensors = get_sensors()
 
-## UI
+# UI
 # ------------------------------------------------------------------------------
 
 # System info
-st.table(system)
+# st.table(system)
 
 # Metrics
 st.header("GPU metrics", divider=True)

@@ -1,13 +1,11 @@
 __author__ = "Giuseppe Pagliuca"
 __version__ = "0.1.0"
 
-import sys
 import time
 
 import matplotlib.pyplot as plt
 import requests
 import streamlit as st
-import yaml
 
 plt.style.use("fivethirtyeight")
 
@@ -46,12 +44,7 @@ def get_ip():
 
 # Settings
 # ------------------------------------------------------------------------------
-with open("./settings.yaml", "r") as fobj:
-    settings = yaml.safe_load(fobj)
-    if sys.argv[1] == "remote":
-        server = settings["ip"]
-    else:
-        server = "localhost"
+server = "localhost"
 
 if "counter" not in st.session_state:
     st.session_state.counter = 0
